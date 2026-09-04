@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Cookie Extract 设置</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="page">
+    <header class="bar">
+      <h1>设置</h1>
+    </header>
+
+    <main class="form">
+      <label class="field">
+        <span class="label">要提取的 Cookie 键</span>
+        <textarea
+          id="keys"
+          class="input"
+          rows="5"
+          spellcheck="false"
+          placeholder="session, token, uid"
+        ></textarea>
+        <span class="help"
+          >用英文逗号或换行分隔，例如
+          <code>session, token</code>。留空表示提取当前站点全部 Cookie。</span
+        >
+      </label>
+
+      <label class="field">
+        <span class="label">输出格式</span>
+        <select id="format" class="input">
+          <option value="header">Cookie 请求头：a=xxx; c=zzzz</option>
+          <option value="lines">每行一个：a=xxx</option>
+          <option value="json">JSON 对象</option>
+        </select>
+      </label>
+
+      <label class="field checkbox">
+        <input id="ignoreCase" type="checkbox" />
+        <span>键名匹配时忽略大小写</span>
+      </label>
+
+      <label class="field checkbox">
+        <input id="sortByInput" type="checkbox" />
+        <span>按配置顺序输出结果</span>
+      </label>
+
+      <div class="form-actions">
+        <button id="saveBtn" class="primary" type="button">保存</button>
+        <button id="resetBtn" type="button">重置</button>
+        <span
+          id="status"
+          class="status"
+          role="status"
+          aria-live="polite"
+        ></span>
+      </div>
+    </main>
+
+    <script src="cookie-core.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

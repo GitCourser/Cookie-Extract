@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Cookie Extract</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <h1>Cookie Extract</h1>
+      <button id="openOptions" class="link-btn" type="button">设置</button>
+    </header>
+
+    <div id="site" class="site">-</div>
+
+    <section class="panel">
+      <div class="panel-head">
+        <span id="countLabel" class="count">-</span>
+        <div class="actions">
+          <button id="copyBtn" class="primary" type="button" disabled>
+            复制结果
+          </button>
+          <button id="refreshBtn" type="button">刷新</button>
+        </div>
+      </div>
+      <textarea
+        id="result"
+        class="result"
+        readonly
+        spellcheck="false"
+        placeholder="提取结果将显示在这里"
+      ></textarea>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <span class="count">明细</span>
+      </div>
+      <ul id="list" class="list"></ul>
+      <p id="emptyTip" class="tip hidden">当前站点没有匹配到任何 Cookie。</p>
+    </section>
+
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+
+    <script src="cookie-core.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
