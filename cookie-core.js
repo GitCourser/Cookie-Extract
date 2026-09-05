@@ -9,7 +9,7 @@ const CookieCore = (function () {
     sortByInput: true,
   };
 
-  const FORMATS = ["header", "lines", "json"];
+  const FORMATS = ["header", "headerCompact", "lines", "json"];
 
   function parseKeys(text) {
     const raw = String(text == null ? "" : text).split(/[\n,，;；\s]+/);
@@ -130,6 +130,14 @@ const CookieCore = (function () {
       });
   }
 
+  function joinPairs(list, separator) {
+    return list
+      .map(function (item) {
+        return item.name + "=" + item.value;
+      })
+      .join(separator);
+  }
+
   function formatResult(items, format) {
     const list = Array.isArray(items) ? items : [];
     if (format === "json") {
@@ -140,17 +148,12 @@ const CookieCore = (function () {
       return JSON.stringify(obj, null, 2);
     }
     if (format === "lines") {
-      return list
-        .map(function (item) {
-          return item.name + "=" + item.value;
-        })
-        .join("\n");
+      return joinPairs(list, "\n");
     }
-    return list
-      .map(function (item) {
-        return item.name + "=" + item.value;
-      })
-      .join("; ");
+    if (format === "headerCompact") {
+      return joinPairs(list, ";");
+    }
+    return joinPairs(list, "; ");
   }
 
   async function copyText(text) {
